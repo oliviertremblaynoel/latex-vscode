@@ -1,0 +1,18 @@
+# dclint disable service-image-require-explicit-tag
+
+name: latex
+services:
+  latex:
+    image: oliviertremblaynoel/latex-vscode:latest
+    volumes:
+      - ${CONFIG_FOLDER}:/config
+    environment:
+      - TZ=${TZ}
+      - PROXY_DOMAIN=${URL}
+      - SUDO_PASSWORD=${SUDO_PASSWORD}
+      - PUID=1000
+      - PGID=1000
+      - DEFAULT_WORKSPACE=/config/workspace
+    ports:
+      - '0.0.0.0:8443:8443'
+    restart: unless-stopped
